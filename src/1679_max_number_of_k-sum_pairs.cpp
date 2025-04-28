@@ -5,6 +5,10 @@
 #include <unordered_map>
 #include <vector>
 
+#include "gtest/gtest.h"
+
+namespace leet {
+
 using namespace std;
 
 class Solution {
@@ -46,10 +50,15 @@ public:
     }
 };
 
-int main(int argc, char** argv) {
-    Solution s;
+} // namespace leet
+
+class MaxNumberOfKsumPairs : public testing::Test {
+public:
+    leet::Solution s;
+};
+
+TEST_F(MaxNumberOfKsumPairs, Example1) {
     std::vector<int> nums{3,1,3,4,3};
     int k = 6;
-    std::cout << s.maxOperations(nums, k) << std::endl;
-    return 0;
+    ASSERT_EQ(s.maxOperations(nums, k), 1);
 }

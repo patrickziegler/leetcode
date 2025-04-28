@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 
+#include "gtest/gtest.h"
+
+namespace leet {
+
 using namespace std;
 
 class Solution {
@@ -28,8 +32,13 @@ public:
     }
 };
 
-int main(int argc, char** argv) {
-    Solution s;
-    std::cout << s.gcdOfStrings("ABCABCABC", "ABCABC") << std::endl;
-    return 0;
+} // namespace leet
+
+class GreatestCommonDivisorOfStrings : public testing::Test {
+public:
+leet::Solution s;
+};
+
+TEST_F(GreatestCommonDivisorOfStrings, Example1) {
+    ASSERT_EQ(s.gcdOfStrings("ABCABCABC", "ABCABC"), "ABC");
 }
