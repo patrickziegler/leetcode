@@ -5,6 +5,8 @@ set(TARGET_NAME ${PROJECT_NAME})
 add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
+    "394_decode_string.cpp"
+    "649_dota2_senate.cpp"
     "735_asteroid_collision.cpp"
     "1071_greatest_common_divisor_of_strings.cpp"
     "1657_determine_if_two_strings_are_close.cpp"
