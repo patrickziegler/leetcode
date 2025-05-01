@@ -1,10 +1,3 @@
-#include <algorithm>
-#include <string>
-#include <unordered_map>
-#include <vector>
-
-#include "gtest/gtest.h"
-
 /*
 Two strings are considered close if you can attain one from the other using the following operations:
 
@@ -42,7 +35,7 @@ Apply Operation 2: "baaccc" -> "abbccc"
 
 Constraints:
 
-    1 <= word1.length, word2.length <= 105
+    1 <= word1.length, word2.length <= 10**5
     word1 and word2 contain only lowercase English letters.
 
 Hint 1:
@@ -51,6 +44,10 @@ Operation 1 allows you to freely reorder the string.
 Hint 2:
 Operation 2 allows you to freely reassign the letters' frequencies.
 */
+
+#include <algorithm>
+
+#include "gtest/gtest.h"
 
 namespace leet {
 

@@ -34,7 +34,7 @@ And in round 2, the third senator can just announce the victory since he is the 
 Constraints:
 
     n == senate.length
-    1 <= n <= 104
+    1 <= n <= 10**4
     senate[i] is either 'R' or 'D'.
 */
 

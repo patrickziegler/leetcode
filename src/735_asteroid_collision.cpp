@@ -1,8 +1,3 @@
-#include <deque>
-#include <vector>
-
-#include "gtest/gtest.h"
-
 /*
 We are given an array asteroids of integers representing asteroids in a row. The indices of the asteriod in the array represent their relative position in space.
 
@@ -30,10 +25,14 @@ Explanation: The 2 and -5 collide resulting in -5. The 10 and -5 collide resulti
 
 Constraints:
 
-    2 <= asteroids.length <= 104
+    2 <= asteroids.length <= 10**4
     -1000 <= asteroids[i] <= 1000
     asteroids[i] != 0
 */
+
+#include <deque>
+
+#include "gtest/gtest.h"
 
 namespace leet {
 

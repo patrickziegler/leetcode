@@ -1,8 +1,3 @@
-#include <map>
-#include <vector>
-
-#include "gtest/gtest.h"
-
 /*
 Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal.
 
@@ -28,8 +23,10 @@ Constraints:
 
     n == grid.length == grid[i].length
     1 <= n <= 200
-    1 <= grid[i][j] <= 105
+    1 <= grid[i][j] <= 10**5
 */
+
+#include "gtest/gtest.h"
 
 namespace leet {
 
