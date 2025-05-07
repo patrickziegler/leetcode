@@ -13,7 +13,8 @@ target_sources(${TARGET_NAME} PRIVATE
     "1071_greatest_common_divisor_of_strings.cpp"
     "1657_determine_if_two_strings_are_close.cpp"
     "1679_max_number_of_k-sum_pairs.cpp"
-    "2352_equal_row_and_column_pairs.cpp")
+    "2352_equal_row_and_column_pairs.cpp"
+    "2542_maximum_subsequence_score.cpp")
 
 target_link_libraries(${TARGET_NAME}
     GTest::GTest GTest::Main)
