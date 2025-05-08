@@ -38,6 +38,7 @@ Constraints:
 */
 
 #include <algorithm>
+#include <queue>
 
 #include "gtest/gtest.h"
 
@@ -48,30 +49,33 @@ using namespace std;
 class Solution {
 public:
     long long maxScore(vector<int>& nums1, vector<int>& nums2, int k) {
-        long long score = 0;
         const size_t n = nums1.size();
+        // sort nums2 in descending order, so that it is guaranteed that for a given nums2[i], which implicitly will be i0,
+        // all other indices i1, ..., ik - 1 will be found to the left and nums2[idx[i]] is min(nums2[0], .., nums2[i])
         std::vector<size_t> idx(n);
         for (size_t i=0; i < n; ++i) {
             idx[i] = i;
         }
         std::sort(idx.begin(), idx.end(), [&nums2](const size_t& a, const size_t& b) -> bool {
-            return nums2[a] < nums2[b];
+            return nums2[a] > nums2[b]; // sort by descending key
         });
-        for (size_t i=0; i <= n - k; ++i) {
-            std::vector<int> v;
-            for (size_t j=i; j < n; ++j) {
-                v.push_back(nums1[idx[j]]);
-                std::push_heap(v.begin(), v.end());
-            }
-            long long s = 0;
-            for (size_t j=0; j < k; ++j) {
-                std::pop_heap(v.begin(), v.end());
-                s += v.back();
-                v.pop_back();
-            }
-            score = std::max(score, nums2[idx[i]] * s);
+        // min heap to keep track of smallest element contained in sum so that we can remove it on each iteration
+        std::priority_queue<int, std::vector<int>, std::greater<int>> q;
+        long long scoreMax = 0, s = 0;
+        // fill the heap with k-1 elements
+        for (size_t i=0; i < k-1; ++i) {
+            s += nums1[idx[i]];
+            q.push(nums1[idx[i]]);
         }
-        return score;
+        // iterate over all possible indices i0 = nums2[i]
+        for (size_t i=k-1; i < n; ++i) {
+            s += nums1[idx[i]];
+            q.push(nums1[idx[i]]);
+            scoreMax = std::max(scoreMax, s * nums2[idx[i]]);
+            s -= q.top();
+            q.pop();
+        }
+        return scoreMax;
     }
 };
 
