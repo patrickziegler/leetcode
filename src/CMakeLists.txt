@@ -10,6 +10,7 @@ target_sources(${TARGET_NAME} PRIVATE
     "450_delete_node_in_a_bst.cpp"
     "649_dota2_senate.cpp"
     "735_asteroid_collision.cpp"
+    "875_koko_eating_bananas.cpp"
     "1071_greatest_common_divisor_of_strings.cpp"
     "1657_determine_if_two_strings_are_close.cpp"
     "1679_max_number_of_k-sum_pairs.cpp"
