@@ -13,6 +13,7 @@ target_sources(${TARGET_NAME} PRIVATE
     "735_asteroid_collision.cpp"
     "875_koko_eating_bananas.cpp"
     "1071_greatest_common_divisor_of_strings.cpp"
+    "1143_longest_common_subsequence.cpp"
     "1657_determine_if_two_strings_are_close.cpp"
     "1679_max_number_of_k-sum_pairs.cpp"
     "2300_successful_pairs_of_spells_and_potions.cpp"
