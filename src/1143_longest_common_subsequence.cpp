@@ -38,34 +38,20 @@ namespace leet {
 using namespace std;
 
 class Solution {
-    bool isSubStr(const std::string& s1, const std::string& s2) {
-        size_t j=0;
-        for (size_t i=0; i < s1.size(); ++i) {
-            if (s1[i] == s2[j] && ++j == s2.size()) {
-                return true;
-            }
-        }
-        return false;
-    }
-    int comp(const std::string& s1, const std::string& s2) {
-        if (isSubStr(s1, s2)) {
-            return s2.size();
-        }
-        int s = 0;
-        for (size_t i=0; i < s2.size(); ++i) {
-            std::string s3 = s2;
-            s3.erase(i, 1);
-            s = std::max(s, comp(s1, s3));
-        }
-        return  s;
-    }
 public:
     int longestCommonSubsequence(string text1, string text2) {
-        if (text2.size() < text1.size()) {
-            return comp(text1, text2);
-        } else {
-            return comp(text2, text1);
+        // TODO: reduce to O(n) memory footprint, add explaination
+        std::vector<std::vector<int>> dp(text1.size()+1, std::vector<int>(text2.size()+1, 0));
+        for (size_t i=1; i <= text1.size(); ++i) {
+            for (size_t j=1; j <= text2.size(); ++j) {
+                if (text1[i-1] == text2[j-1]) {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                } else {
+                    dp[i][j] = std::max(dp[i-1][j], dp[i][j-1]);
+                }
+            }
         }
+        return dp[text1.size()][text2.size()];
     }
 };
 
