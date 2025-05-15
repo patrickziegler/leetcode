@@ -16,6 +16,7 @@ target_sources(${TARGET_NAME} PRIVATE
     "1143_longest_common_subsequence.cpp"
     "1657_determine_if_two_strings_are_close.cpp"
     "1679_max_number_of_k-sum_pairs.cpp"
+    "1698_number_of_distinct_substrings_in_a_string.cpp"
     "2300_successful_pairs_of_spells_and_potions.cpp"
     "2352_equal_row_and_column_pairs.cpp"
     "2462_total_cost_to_hire_k_workers.cpp"
