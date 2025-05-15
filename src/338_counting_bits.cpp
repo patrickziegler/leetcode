@@ -43,21 +43,23 @@ using namespace std;
 class Solution {
 public:
     vector<int> countBits(int n) {
-        if (n == 0) {
-            return {0};
-        }
-        const std::vector<int> base = {0,1,1,2};
-        const int m = std::ceil(std::log(n)/std::log(4));
-        std::vector<int> res(n+1, 0);
-        int r;
+        std::vector<int> ans(n+1, 0);
         for (size_t i=0; i <= n; ++i) {
-            r = 0;
-            for (size_t j=0; j <= m; ++j) {
-                r += base[i / static_cast<size_t>(std::pow(4, j)) % 4];
+            if (i == 0) {
+                ans[i] = 0;
+            } else if (i == 1) {
+                ans[i] = 1;
+            } else if (i == 2) {
+                ans[i] = 1;
+            } else if (i % 2 != 0) {
+                // for odd numbers, the result is an increment of the previous (which is already calculated)
+                ans[i] = ans[i-1] + 1;
+            } else {
+                // for even numbers, the result is the same as of their half (which is already calculated)
+                ans[i] = ans[i/2];
             }
-            res[i] = r;
         }
-        return res;
+        return ans;
     }
 };
 
