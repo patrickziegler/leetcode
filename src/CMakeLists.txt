@@ -6,6 +6,7 @@ add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
     "216_combination_sum_3.cpp"
+    "338_counting_bits.cpp"
     "394_decode_string.cpp"
     "399_evaluate_division.cpp"
     "450_delete_node_in_a_bst.cpp"
