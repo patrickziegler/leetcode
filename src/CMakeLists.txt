@@ -15,6 +15,7 @@ target_sources(${TARGET_NAME} PRIVATE
     "875_koko_eating_bananas.cpp"
     "1071_greatest_common_divisor_of_strings.cpp"
     "1143_longest_common_subsequence.cpp"
+    "1268_search_suggestions_system.cpp"
     "1657_determine_if_two_strings_are_close.cpp"
     "1679_max_number_of_k-sum_pairs.cpp"
     "1698_number_of_distinct_substrings_in_a_string.cpp"
