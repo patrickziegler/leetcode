@@ -9,6 +9,7 @@ target_sources(${TARGET_NAME} PRIVATE
     "338_counting_bits.cpp"
     "394_decode_string.cpp"
     "399_evaluate_division.cpp"
+    "435_non_overlapping_intervals.cpp"
     "450_delete_node_in_a_bst.cpp"
     "649_dota2_senate.cpp"
     "735_asteroid_collision.cpp"
