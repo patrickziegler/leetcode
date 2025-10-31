@@ -45,47 +45,26 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> helper(int k, int n) {
-        if (k == 1) {
-            std::vector<std::vector<int>> v;
-            for (int i = 1; i <= std::min(n - k + 1, 9); ++i) {
-                v.push_back(std::vector<int>(1, i));
+    /* imagine a tree where each node represents state of vector v, depth-first search combined with immediately
+     * moving to the next path as soon as conditions are not met (i.E. sum is too big) is called backtracing */
+    void bt(std::vector<std::vector<int>>& vv, std::vector<int>& v, int k, int n, int j) {
+        for (int i=j+1; i<=9 && (n-i)>=0; ++i) {
+            if (k > 1) {
+                v.push_back(i);
+                bt(vv, v, k-1, n-i, i);
+                v.pop_back();
+            } else if (n - i == 0) {
+                v.push_back(i);
+                vv.emplace_back(v);
+                v.pop_back();
             }
-            return v;
-        } else {
-            std::vector<std::vector<int>> v;
-            for (const auto& e : helper(k - 1, n)) {
-                for (int i = e.back() + 1; i <= std::min(n - k + 1, 9); ++i) {
-                    int s = 0;
-                    for (const auto& p : e) {
-                        s += p;
-                    }
-                    if (s + i <= n) {
-                        v.push_back(e);
-                        v.back().push_back(i);
-                    }
-                }
-            }
-            return v;
         }
     }
     vector<vector<int>> combinationSum3(int k, int n) {
-        /* TODO: solution was accepted but is rather slow, pls improve it by:
-         * - preventing all these (re)allocations of vectors
-         * - don't recalculate full sum on every layer, reuse results
-         * - don't add sequences with wrong sum in the final layer that would need to be filtered out again */
-        std::vector<std::vector<int>> v;
-        auto o = helper(k, n);
-        for (const auto& e : o) {
-            int s = 0;
-            for (const auto& p : e) {
-                s += p;
-            }
-            if (s == n) {
-                v.push_back(e);
-            }
-        }
-        return v;
+        std::vector<std::vector<int>> vv;
+        std::vector<int> v; // path for depth-first search
+        bt(vv, v, k, n, 0);
+        return vv;
     }
 };
 
