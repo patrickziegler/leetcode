@@ -46,6 +46,7 @@ Operation 2 allows you to freely reassign the letters' frequencies.
 */
 
 #include <algorithm>
+#include <unordered_set>
 
 #include "gtest/gtest.h"
 
@@ -59,28 +60,28 @@ public:
         /* Idea: considering the two hints above,
          * we just need to compare the lists of unique
          * characters and occurences between the words */
-        std::unordered_map<char, size_t> stat1, stat2;
-        std::vector<char> keys1, keys2;
-        std::vector<size_t> counts1, counts2;
+        std::unordered_map<char, size_t> stats1, stats2;
         for (const auto& c : word1) {
-            ++stat1[c];
+            stats1.try_emplace(c, 0);
+            ++stats1[c];
         }
         for (const auto& c : word2) {
-            ++stat2[c];
+            stats2.try_emplace(c, 0);
+            ++stats2[c];
         }
-        for (const auto& [c, n] : stat1) {
-            keys1.push_back(c);
-            counts1.push_back(n);
+        std::unordered_set<char> chars1, chars2;
+        std::vector<size_t> freqs1, freqs2; // occurences are not unique
+        for (const auto& [k, v] : stats1) {
+            chars1.insert(k);
+            freqs1.push_back(v);
         }
-        for (const auto& [c, n] : stat2) {
-            keys2.push_back(c);
-            counts2.push_back(n);
+        for (const auto& [k, v] : stats2) {
+            chars2.insert(k);
+            freqs2.push_back(v);
         }
-        std::sort(keys1.begin(), keys1.end());
-        std::sort(keys2.begin(), keys2.end());
-        std::sort(counts1.begin(), counts1.end());
-        std::sort(counts2.begin(), counts2.end());
-        return keys1 == keys2 && counts1 == counts2;
+        std::sort(freqs1.begin(), freqs1.end());
+        std::sort(freqs2.begin(), freqs2.end());
+        return chars1 == chars2 && freqs1 == freqs2;
     }
 };
 
@@ -101,4 +102,8 @@ TEST_F(DetermineIfTwoStringsAreClose, Example2) {
 
 TEST_F(DetermineIfTwoStringsAreClose, Example3) {
     ASSERT_EQ(s.closeStrings("cabbba", "abbccc"), true);
+}
+
+TEST_F(DetermineIfTwoStringsAreClose, Case166) {
+    ASSERT_EQ(s.closeStrings("aaabbbbccddeeeeefffff", "aaaaabbcccdddeeeeffff"), false);
 }
