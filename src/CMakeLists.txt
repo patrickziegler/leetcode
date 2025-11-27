@@ -5,6 +5,7 @@ set(TARGET_NAME ${PROJECT_NAME})
 add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
+    "146_lru_cache.cpp"
     "216_combination_sum_3.cpp"
     "338_counting_bits.cpp"
     "394_decode_string.cpp"
